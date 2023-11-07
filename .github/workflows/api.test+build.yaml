@@ -1,0 +1,29 @@
+name: "api: build+run"
+
+on:
+  push:
+    branches-ignore:
+      - "master"
+    paths:
+      - "api/**"
+jobs:
+  api-build-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+      - name: Install dependencies
+        run: yarn install
+        working-directory: ./api
+      - name: Run eslint
+        run: yarn lint
+        working-directory: ./api
+      - name: Run test
+        run: yarn test
+        working-directory: ./api
+      - name: Build api
+        run: yarn build
+        working-directory: ./api
