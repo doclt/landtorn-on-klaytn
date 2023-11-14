@@ -8,8 +8,9 @@ const config: HardhatUserConfig = {
   networks: {
     hardhat: {},
     baobab: {
-      url: 'https://public-en-baobab.klaytn.net',
-      accounts: [process.env.PR_KEY || '']
+      url: 'https://api.baobab.klaytn.net:8651',
+      accounts: [process.env.PR_KEY || ''],
+      gasPrice: 250_000_000_000
     },
     cypress: {
       url: 'https://public-en-cypress.klaytn.net',
@@ -29,10 +30,7 @@ const config: HardhatUserConfig = {
     timeout: 40000
   },
   etherscan: {
-    apiKey: {
-      baobab: process.env.ETHERSCAN_API_KEY || '',
-      cypress: process.env.ETHERSCAN_API_KEY || ''
-    }
+    apiKey: process.env.ETHERSCAN_API_KEY || ''
   }
 }
 
