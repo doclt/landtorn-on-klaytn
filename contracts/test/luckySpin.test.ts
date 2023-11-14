@@ -8,7 +8,10 @@ describe('Lucky spin deploy', function () {
   async function deployFixture() {
     const [deployer, otherAccount, player2] = await ethers.getSigners()
     const LuckySpin = await ethers.getContractFactory('LuckySpin')
-    const luckySpin = await LuckySpin.deploy('0xDA8c0A00A372503aa6EC80f9b29Cc97C454bE499')
+    const luckySpin = await LuckySpin.deploy(
+      '0xDA8c0A00A372503aa6EC80f9b29Cc97C454bE499',
+      '0x2ffa7cEb13F4d9ADF3e7211f29293161340c11Be'
+    )
 
     return {
       luckySpin,

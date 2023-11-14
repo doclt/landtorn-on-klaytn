@@ -33,9 +33,9 @@ contract LuckySpin is VRFConsumerBase, Ownable {
     }
 
     OutCome[] public sChance; // base ratio is 10,000 ex: sChance[0]= OutCome({reward: 0, ratio: 4000}) => 40% for 0x
-    mapping(uint256 => RequestDetail) sRequestIdToDetail;
-    mapping(uint256 => uint256) sRequestIdToResult;
-    mapping(address => PlayerDetail) sAccountDetail;
+    mapping(uint256 => RequestDetail) public sRequestIdToDetail;
+    mapping(uint256 => uint256) public sRequestIdToResult;
+    mapping(address => PlayerDetail) public sAccountDetail;
 
     error InvalidAccount();
     error InvalidTokenOwner();
@@ -47,8 +47,9 @@ contract LuckySpin is VRFConsumerBase, Ownable {
     event ChanceSet(uint256 index, uint256 reward, uint256 ratio);
     event ConfigSet(bytes32 keyHash, uint64 accId, uint32 callbackGasLimit);
 
-    constructor(address coordinator) VRFConsumerBase(coordinator) {
+    constructor(address coordinator, address shard) VRFConsumerBase(coordinator) {
         COORDINATOR = IVRFCoordinator(coordinator);
+        SHARD = IERC20(shard);
         initChance();
     }
 
@@ -69,6 +70,11 @@ contract LuckySpin is VRFConsumerBase, Ownable {
         sChance.push(OutCome(300, 600));
         //6x: 2%
         sChance.push(OutCome(600, 200));
+    }
+
+    function setContract(address coordinator, address shard) external onlyOwner {
+        COORDINATOR = IVRFCoordinator(coordinator);
+        SHARD = IERC20(shard);
     }
 
     function setChance(uint256 index, uint256 reward, uint256 ratio) public onlyOwner {

@@ -6,7 +6,7 @@ async function main() {
   const network = hardhatArguments.network ? hardhatArguments.network : 'dev'
   const luckySpin = await ethers.deployContract(
     'LuckySpin',
-    ['0xDA8c0A00A372503aa6EC80f9b29Cc97C454bE499'] //coordinator,
+    ['0xDA8c0A00A372503aa6EC80f9b29Cc97C454bE499', '0x2ffa7cEb13F4d9ADF3e7211f29293161340c11Be'] //coordinator,
   )
 
   await luckySpin.waitForDeployment()
