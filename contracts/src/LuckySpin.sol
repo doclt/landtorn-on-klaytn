@@ -57,19 +57,19 @@ contract LuckySpin is VRFConsumerBase, Ownable {
         //0x: 40%
         sChance.push(OutCome(0, 4000));
         //0.5x: 6%
-        sChance.push(OutCome(50, 600));
+        sChance.push(OutCome(5000, 600));
         //1.25x: 4%
-        sChance.push(OutCome(125, 400));
+        sChance.push(OutCome(12500, 400));
         //1.5x: 24%
-        sChance.push(OutCome(150, 2400));
+        sChance.push(OutCome(15000, 2400));
         //1.75x: 12%
-        sChance.push(OutCome(175, 1200));
+        sChance.push(OutCome(17500, 1200));
         //2.5x: 6%
-        sChance.push(OutCome(250, 600));
+        sChance.push(OutCome(25000, 600));
         //3x: 6%
-        sChance.push(OutCome(300, 600));
+        sChance.push(OutCome(30000, 600));
         //6x: 2%
-        sChance.push(OutCome(600, 200));
+        sChance.push(OutCome(60000, 200));
     }
 
     function setContract(address coordinator, address shard) external onlyOwner {
@@ -125,7 +125,9 @@ contract LuckySpin is VRFConsumerBase, Ownable {
             }
         }
         sAccountDetail[request.owner].balance += winAmount;
-        if (winAmount > request.amount) sAccountDetail[request.owner].winCount += 1;
+        bool isWin = winAmount > request.amount;
+        if (isWin) sAccountDetail[request.owner].winCount += 1;
+        sRequestIdToResult[requestId] = randomWord;
         emit SpinResult(request.owner, requestId, randomWord);
     }
 

@@ -34,5 +34,19 @@ describe('Lucky spin deploy', function () {
       expect(await luckySpin.sAccId()).to.be.equal(accId)
       expect(await luckySpin.sCallbackGasLimit()).to.be.equal(callBackGasLimit)
     })
+    it('fulfill with mock consumer', async function () {
+      const { luckySpin, deployer } = await loadFixture(deployFixture)
+      await (await luckySpin.setChance(0, 1, 8000)).wait()
+      const { reward, ratio } = await luckySpin.sChance(0)
+      expect(reward).to.be.equal(1)
+      expect(ratio).to.be.equal(8000)
+      const keyHash = '0xd9af33106d664a53cb9946df5cd81a30695f5b72224ee64e798b278af812779c'
+      const accId = 119
+      const callBackGasLimit = 500_000
+      await (await luckySpin.setConfig(keyHash, accId, callBackGasLimit)).wait()
+      expect(await luckySpin.sKeyHash()).to.be.equal(keyHash)
+      expect(await luckySpin.sAccId()).to.be.equal(accId)
+      expect(await luckySpin.sCallbackGasLimit()).to.be.equal(callBackGasLimit)
+    })
   })
 })
