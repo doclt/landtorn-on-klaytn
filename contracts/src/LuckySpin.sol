@@ -72,8 +72,7 @@ contract LuckySpin is VRFConsumerBase, Ownable {
         sChance.push(OutCome(60000, 200));
     }
 
-    function setContract(address coordinator, address shard) external onlyOwner {
-        COORDINATOR = IVRFCoordinator(coordinator);
+    function setContract(address shard) external onlyOwner {
         SHARD = IERC20(shard);
     }
 
@@ -94,16 +93,21 @@ contract LuckySpin is VRFConsumerBase, Ownable {
     // Receive remaining payment from requestRandomWordsPayment
     receive() external payable {}
 
-    function spin(uint256 amount) public returns (uint256 requestId) {
+    function spin(uint256 amount) public payable returns (uint256 requestId) {
         if (amount < sMinAmount) revert InvalidShardAmount();
-
+        uint256 shardBalance = SHARD.balanceOf(msg.sender);
         uint256 approveAmount = SHARD.allowance(msg.sender, address(this));
-        if (approveAmount < amount) {
+        if (approveAmount < amount || shardBalance < amount) {
             revert InsufficientBalance();
         }
         SHARD.transferFrom(msg.sender, address(this), amount);
 
-        uint256 id = COORDINATOR.requestRandomWords(sKeyHash, sAccId, sCallbackGasLimit, 1);
+        uint256 id = COORDINATOR.requestRandomWords{value: msg.value}(
+            sKeyHash,
+            sCallbackGasLimit,
+            1,
+            msg.sender
+        );
         sRequestIdToDetail[id] = RequestDetail({amount: amount, owner: msg.sender});
         sAccountDetail[msg.sender].spinCount += 1;
         sAccountDetail[msg.sender].spinAmount += amount;

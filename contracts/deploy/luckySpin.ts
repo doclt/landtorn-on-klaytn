@@ -4,17 +4,26 @@ import { initConfig, setConfig, updateConfig } from './ultil'
 async function main() {
   await initConfig()
   const network = hardhatArguments.network ? hardhatArguments.network : 'dev'
+  const config: { coordinator: string; shard: string; keyHash: string } = {
+    coordinator: '0xDA8c0A00A372503aa6EC80f9b29Cc97C454bE499',
+    shard: '0x64a9b3183ee8FFAfA9Ea47737eF4175753253F73',
+    keyHash: '0xd9af33106d664a53cb9946df5cd81a30695f5b72224ee64e798b278af812779c'
+  }
+  if (network == 'cypress') {
+    config.coordinator = '0xDA8c0A00A372503aa6EC80f9b29Cc97C454bE499'
+    config.shard = '0x52c45D3068c937CB1e6b4A7f2c2A66b85056dD24'
+    config.keyHash = '0xd9af33106d664a53cb9946df5cd81a30695f5b72224ee64e798b278af812779c'
+  }
   const luckySpin = await ethers.deployContract(
     'LuckySpin',
-    ['0x3F247f70DC083A2907B8E76635986fd09AA80EFb', '0x52c45D3068c937CB1e6b4A7f2c2A66b85056dD24'] //coordinator,
+    [config.coordinator, config.shard] //coordinator,
   )
 
   await luckySpin.waitForDeployment()
   console.log(`luckySpin with address: ${await luckySpin.getAddress()}`)
-  const keyHash = '0x6cff5233743b3c0321a19ae11ab38ae0ddc7ddfe1e91b162fa8bb657488fb157'
   const accId = 119
-  const callBackGasLimit = 2_500_000
-  await luckySpin.setConfig(keyHash, accId, callBackGasLimit)
+  const callBackGasLimit = 500_000
+  await luckySpin.setConfig(config.keyHash, accId, callBackGasLimit)
 
   setConfig(`${network}.LuckySpin`, await luckySpin.getAddress())
   await updateConfig()
