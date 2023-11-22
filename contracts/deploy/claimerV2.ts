@@ -7,7 +7,7 @@ async function main() {
 
   //torn
   const claimer = await ethers.deployContract('ClaimerV2', [
-    '0xB311Ec23c4A7578a4c18F66774a5d7b51DD1DD07'
+    '0x29c923c1414F0E714d5aC90943CBfe9fA8fB3f1a'
   ])
 
   await claimer.waitForDeployment()
