@@ -1,0 +1,360 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Torn {
+  id     Int      @unique
+  status Int      @default(1)
+  typeId Int
+  Type   TornType @relation(fields: [typeId], references: [id])
+}
+
+model Paladin {
+  id             Int    @unique
+  shard          Int
+  modifiedTxHash String @db.VarChar(200)
+}
+
+model IronFist {
+  id             Int    @unique
+  shard          Int
+  modifiedTxHash String @db.VarChar(200)
+}
+
+model Account {
+  id              Int             @id @default(autoincrement())
+  implementation  String          @db.VarChar(255)
+  account         String          @unique @db.VarChar(255)
+  chainId         Int
+  tokenContract   String          @db.VarChar(255)
+  tokenId         Int
+  salt            Int
+  txHash          String          @db.VarChar(256)
+  energy          Int             @default(40)
+  beginTime       DateTime?       @default(now()) @db.Timestamptz(6)
+  createdDate     DateTime?       @default(now()) @db.Timestamptz(6)
+  version         Int             @default(2)
+  status          Int             @default(1)
+  clan            String?         @db.VarChar(255)
+  joinedClan      String?         @db.VarChar(255)
+  extraEnergy     Int?            @default(0)
+  createdClanTime DateTime?       @db.Timestamptz(6)
+  joinedClanTime  DateTime?       @db.Timestamptz(6)
+  AccountMythic   AccountMythic[]
+  Asset           Asset[]
+  ClanReward      ClanReward[]
+}
+
+model Spoil {
+  id            Int        @id
+  name          String     @unique @db.VarChar(200)
+  attack        Int
+  defense       Int
+  shard         Int
+  spoilTypeId   Int
+  imageUrl      String     @default("") @db.VarChar(500)
+  dungeonTypeId Int?
+  Asset         Asset[]
+  Campaign      Campaign[]
+  SpoilType     SpoilType  @relation(fields: [spoilTypeId], references: [id])
+}
+
+model SpoilCategory {
+  id        Int         @id @default(autoincrement())
+  name      String      @unique @db.VarChar(200)
+  contract  String      @default("0x9f9401eE604F7725255c756B99e416754BA0B910") @db.VarChar(200)
+  SpoilType SpoilType[]
+}
+
+model SpoilType {
+  id            Int           @id @default(autoincrement())
+  name          String        @unique @db.VarChar(200)
+  categoryId    Int
+  Spoil         Spoil[]
+  SpoilCategory SpoilCategory @relation(fields: [categoryId], references: [id])
+}
+
+model Action {
+  id           Int            @id
+  name         String         @db.VarChar(500)
+  ClanActivity ClanActivity[]
+  ClanSetting  ClanSetting[]
+}
+
+model Dungeon {
+  id            Int             @id @default(autoincrement())
+  txHash        String          @unique @db.VarChar(200)
+  gameId        Int
+  gameType      Int
+  contract      String          @db.VarChar(200)
+  version       Int             @default(2)
+  DungeonReward DungeonReward[]
+}
+
+model Transaction {
+  id         Int       @id @default(autoincrement())
+  action     Int
+  txHash     String    @unique @db.VarChar(200)
+  recipient  String    @db.VarChar(200)
+  createdDay DateTime? @default(now()) @db.Timestamptz(6)
+  dungeonId  Int       @default(0)
+  tornId     Int?
+  note       String?   @db.VarChar(500)
+}
+
+model DungeonType {
+  id             Int              @id @default(autoincrement())
+  name           String           @unique @db.VarChar(200)
+  atk            Int?
+  def            Int?
+  energy         Int?
+  gate           Int?
+  DungeonSetting DungeonSetting[]
+}
+
+model Asset {
+  account String  @db.VarChar(200)
+  spoilId Int
+  amount  Int
+  Account Account @relation(fields: [account], references: [account])
+  Spoil   Spoil   @relation(fields: [spoilId], references: [id])
+
+  @@id([account, spoilId])
+}
+
+model BlackList {
+  id          Int       @id @default(autoincrement())
+  txHash      String    @unique @db.VarChar(200)
+  account     String    @unique @db.VarChar(200)
+  reason      String    @db.VarChar(500)
+  createdDate DateTime? @default(now()) @db.Timestamptz(6)
+}
+
+model DungeonReward {
+  id         Int     @id @default(autoincrement())
+  spoilId    Int
+  dungeonId  Int
+  amount     Int
+  rewardType Int     @default(1)
+  Dungeon    Dungeon @relation(fields: [dungeonId], references: [id])
+}
+
+model AccountMythic {
+  account  String  @db.VarChar(200)
+  mythicId Int
+  amount   Int
+  Account  Account @relation(fields: [account], references: [account])
+  Mythic   Mythic  @relation(fields: [mythicId], references: [id])
+
+  @@id([account, mythicId])
+}
+
+model Mythic {
+  id            Int             @id @default(autoincrement())
+  name          String          @db.VarChar(500)
+  image         String          @db.VarChar(500)
+  contract      String          @db.VarChar(200)
+  description   String?
+  allegianceId  Int?
+  rarityId      Int?
+  AccountMythic AccountMythic[]
+  Allegiance    Allegiance?     @relation(fields: [allegianceId], references: [id])
+  Rarity        Rarity?         @relation(fields: [rarityId], references: [id])
+}
+
+model Allegiance {
+  id     Int      @id @default(autoincrement())
+  name   String   @db.VarChar(500)
+  Mythic Mythic[]
+}
+
+model Rarity {
+  id     Int      @id @default(autoincrement())
+  name   String   @db.VarChar(500)
+  Mythic Mythic[]
+}
+
+model Airdrop {
+  id                 Int       @id @default(autoincrement())
+  account            String    @unique @db.VarChar(255)
+  tokenId            Int       @default(0)
+  accountCreatedDate DateTime? @default(now()) @db.Timestamptz(6)
+  airdropDate        DateTime? @default(now()) @db.Timestamptz(6)
+  txHash             String    @db.VarChar(255)
+}
+
+model Price {
+  id          Int       @id @default(autoincrement())
+  updatedTime DateTime? @default(now()) @db.Timestamptz(6)
+  pricePairId Int
+  value       BigInt
+  PricePair   PricePair @relation(fields: [pricePairId], references: [id])
+}
+
+model PricePair {
+  id       Int     @id @default(autoincrement())
+  name     String
+  decimals Int     @default(8)
+  Price    Price[]
+}
+
+model SacrificeDefinition {
+  id          Int    @id @default(autoincrement())
+  feeRatio    Int
+  rewardRatio Int    @default(0)
+  name        String @default("")
+}
+
+model SacrificeDetail {
+  id          Int     @id @default(autoincrement())
+  sacrificeTx String
+  txHash      String
+  amount      Decimal @default(0) @db.Decimal(10, 2)
+  tokenId     Int     @default(0)
+}
+
+model SacrificeRewardToken {
+  id      Int    @id @default(autoincrement())
+  name    String
+  tokenId Int
+}
+
+model DungeonSetting {
+  id            Int         @id @default(autoincrement())
+  dungeonTypeId Int
+  rewardName    String?
+  ratio         Decimal     @default(0) @db.Decimal(8, 5)
+  rewardType    Int?
+  range         Int?
+  DungeonType   DungeonType @relation(fields: [dungeonTypeId], references: [id])
+}
+
+model SacrificeType {
+  id          Int    @id @default(autoincrement())
+  name        String @db.VarChar(500)
+  description String @db.VarChar(1000)
+}
+
+model TornType {
+  id          Int           @id @default(autoincrement())
+  name        String        @db.VarChar(500)
+  description String?       @db.VarChar(1000)
+  image       String?       @db.VarChar(500)
+  status      Int           @default(1)
+  ClanSetting ClanSetting[]
+  Torn        Torn[]
+}
+
+model ClanReward {
+  account    String     @db.VarChar(255)
+  typeId     Int
+  amount     BigInt
+  claimed    BigInt     @default(0)
+  Account    Account    @relation(fields: [account], references: [account])
+  RewardType RewardType @relation(fields: [typeId], references: [id])
+
+  @@id([account, typeId])
+}
+
+model RewardType {
+  id           Int            @id @default(autoincrement())
+  name         String         @db.VarChar(500)
+  description  String         @db.VarChar(1000)
+  ClanActivity ClanActivity[]
+  ClanClaim    ClanClaim[]
+  ClanReward   ClanReward[]
+  ClanSetting  ClanSetting[]
+}
+
+model ClanSetting {
+  id         Int        @id @default(autoincrement())
+  actionId   Int
+  line       Int
+  value      Decimal    @default(0) @db.Decimal(10, 2)
+  typeId     Int
+  tornTypeId Int
+  unit       Int
+  Action     Action     @relation(fields: [actionId], references: [id])
+  TornType   TornType   @relation(fields: [tornTypeId], references: [id])
+  RewardType RewardType @relation(fields: [typeId], references: [id])
+}
+
+model ClanActivity {
+  id           Int        @id @default(autoincrement())
+  account      String     @db.VarChar(255)
+  actionId     Int
+  txHash       String     @db.VarChar(255)
+  recipient    String     @db.VarChar(255)
+  line         Int
+  amount       BigInt
+  rewardTypeId Int
+  createdDate  DateTime   @default(now()) @db.Timestamptz(6)
+  Action       Action     @relation(fields: [actionId], references: [id])
+  RewardType   RewardType @relation(fields: [rewardTypeId], references: [id])
+}
+
+model ClanClaim {
+  txHash       String     @unique @db.VarChar(255)
+  amount       BigInt
+  recipient    String     @db.VarChar(255)
+  rewardTypeId Int
+  RewardType   RewardType @relation(fields: [rewardTypeId], references: [id])
+}
+
+model Enchantment {
+  txHash      String    @unique @db.VarChar(255)
+  sender      String    @db.VarChar(255)
+  account     String    @db.VarChar(255)
+  value       BigInt
+  createdTime DateTime? @default(now()) @db.Timestamptz(6)
+}
+
+model MarketplaceBaronSet {
+  id     Int @id @default(autoincrement())
+  itemId Int
+}
+
+model MarketplaceItem {
+  id                     Int                      @id
+  itemType               Int
+  currency               String                   @db.VarChar(255)
+  image                  String                   @db.VarChar(255)
+  price                  Decimal                  @db.Decimal(10, 5)
+  name                   String                   @db.VarChar(255)
+  value                  Int
+  itemId                 Int
+  MarketplaceTransaction MarketplaceTransaction[]
+}
+
+model MarketplaceItemType {
+  id          Int    @id @default(autoincrement())
+  name        String @db.VarChar(255)
+  description String @db.VarChar(500)
+}
+
+model MarketplaceTransaction {
+  txHash          String          @unique @db.VarChar(255)
+  account         String          @db.VarChar(255)
+  sender          String          @db.VarChar(255)
+  marketplaceId   Int
+  amount          Int
+  createdTime     DateTime?       @default(now()) @db.Timestamptz(6)
+  MarketplaceItem MarketplaceItem @relation(fields: [marketplaceId], references: [id])
+}
+
+model Campaign {
+  id          Int    @id
+  description String @db.VarChar(500)
+  spoilId     Int
+  Spoil       Spoil  @relation(fields: [spoilId], references: [id])
+}
+
+model DungeonRewardType {
+  id   Int    @id
+  name String @db.VarChar(500)
+}
