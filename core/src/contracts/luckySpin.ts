@@ -283,6 +283,11 @@ export const luckySpinAbis = [
         internalType: 'uint256',
         name: 'balance',
         type: 'uint256'
+      },
+      {
+        internalType: 'uint256',
+        name: 'claimed',
+        type: 'uint256'
       }
     ],
     stateMutability: 'view',

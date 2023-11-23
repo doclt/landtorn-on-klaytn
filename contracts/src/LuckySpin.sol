@@ -25,6 +25,7 @@ contract LuckySpin is VRFConsumerBase, Ownable {
         uint256 winCount;
         uint256 spinAmount;
         uint256 balance;
+        uint256 claimed;
     }
 
     struct RequestDetail {
@@ -120,18 +121,20 @@ contract LuckySpin is VRFConsumerBase, Ownable {
         uint256 randomWord = (randomWords[0] % 10000) + 1;
         uint256 chanceNumber;
         uint256 winAmount;
+        uint256 winIndex;
         for (uint256 i = 0; i < sChance.length; i++) {
             OutCome memory chance = sChance[i];
             chanceNumber += chance.ratio;
             if (randomWord <= chanceNumber) {
                 winAmount = (chance.reward * request.amount) / 10000;
+                winIndex = i + 1;
                 break;
             }
         }
         sAccountDetail[request.owner].balance += winAmount;
         bool isWin = winAmount > request.amount;
         if (isWin) sAccountDetail[request.owner].winCount += 1;
-        sRequestIdToResult[requestId] = randomWord;
+        sRequestIdToResult[requestId] = winIndex;
         emit SpinResult(request.owner, requestId, randomWord);
     }
 
@@ -149,6 +152,7 @@ contract LuckySpin is VRFConsumerBase, Ownable {
         uint256 amount = player.balance;
         if (amount <= 0 || SHARD.balanceOf(address(this)) < amount) revert InsufficientBalance();
         player.balance = 0;
+        player.claimed += amount;
         SHARD.transferFrom(address(this), msg.sender, amount);
     }
 }

@@ -21,7 +21,22 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "yarn clean && tsc",
-    "lint": "DEBUG=eslint:cli-engine npx eslint 'src/**/*.ts' 'src/*.ts'"
+    "lint": "DEBUG=eslint:cli-engine npx eslint 'src/**/*.ts' 'src/*.ts'",
+    "start:listener": "node --no-warnings --experimental-specifier-resolution=node --experimental-json-modules dist/listener/main",
+    "start:listener:torn": "yarn start:listener --service TORN",
+    "start:worker": "node --no-warnings --experimental-specifier-resolution=node --experimental-json-modules dist/worker/main.js",
+    "start:worker:torn": "yarn start:worker --worker TORN",
+    "flush": "node --no-warnings --experimental-specifier-resolution=node --experimental-json-modules dist/tools/flush-queues.js",
+    "start:listener:claimer": "yarn start:listener --service CLAIMER",
+    "start:worker:claimer": "yarn start:worker --worker CLAIMER",
+    "start:listener:sacrifice": "yarn start:listener --service SACRIFICE",
+    "start:worker:sacrifice": "yarn start:worker --worker SACRIFICE",
+    "start:listener:reward": "yarn start:listener --service REWARD",
+    "start:worker:reward": "yarn start:worker --worker REWARD",
+    "start:listener:shard": "yarn start:listener --service SHARD",
+    "start:worker:shard": "yarn start:worker --worker SHARD",
+    "start:listener:market": "yarn start:listener --service MARKETPLACE",
+    "start:worker:market": "yarn start:worker --worker MARKETPLACE"
   },
   "dependencies": {
     "@typescript-eslint/parser": "^6.9.1",
