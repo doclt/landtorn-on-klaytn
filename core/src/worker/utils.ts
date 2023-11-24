@@ -20,9 +20,7 @@ import { Reward } from './types'
 import { TornAbis } from '../contracts/torn'
 import { parseShard } from '../utils'
 
-const gasLimit = 787230
-const maxgas = 18124218 //wei
-const maxPriority = 141965 // Gwei
+const gasLimit = 500000
 
 export async function buildContract(
   abis: ethers.InterfaceAbi,
@@ -58,8 +56,6 @@ export async function spoilMintBatch(
 ) {
   const spoil = await buildContract(SpoilAbis, SPOIL_ADDRESS)
   const receipt = await spoil.mintBatch(accountAddress, spoilTypes, amounts, '0x', {
-    maxFeePerGas: maxgas,
-    maxPriorityFeePerGas: maxPriority,
     gasLimit
   })
   return await receipt.wait()
@@ -79,9 +75,7 @@ export async function mythicMintBatch(
 ) {
   const mythic = await buildContract(MythicAbis, MYTHIC_ADDRESS, signer)
   const receipt = await mythic.mintBatch(accountAddress, mythicTypes, amounts, '0x', {
-    gasLimit,
-    maxFeePerGas: maxgas,
-    maxPriorityFeePerGas: maxPriority
+    gasLimit
   })
   return await receipt.wait()
 }
@@ -93,9 +87,7 @@ export async function shardTransfer(
 ) {
   const shardContract = await buildContract(Erc20Abis, SHARD_ADDRESS, signer)
   const tx = await shardContract.transfer(to, parseShard(amount), {
-    gasLimit,
-    maxFeePerGas: maxgas,
-    maxPriorityFeePerGas: maxPriority
+    gasLimit
   })
   return await tx.wait()
 }
@@ -110,8 +102,6 @@ export async function ethTransfer(
   const value = parseEther(amount.toString())
   const tx: TransactionRequest = {
     gasLimit,
-    maxFeePerGas: maxgas,
-    maxPriorityFeePerGas: maxPriority,
     value,
     from: sender.address,
     to
@@ -124,66 +114,6 @@ export async function tornOwnerOf(tokenId: number) {
   const tornContract = await buildContract(TornAbis, TORN_ADDRESS)
   const owner = await tornContract.ownerOf(tokenId)
   return owner
-}
-
-export function rewards() {
-  // 1/2/3/4/5
-  return ['Weapons', 'Wearables', 'Spoils', 'Nothing', 'Death']
-}
-
-export async function rewardD1() {
-  const rd = randomInt(1, 100)
-  if (rd <= 30)
-    //30% weapons
-    return 'Weapons'
-  else if (rd <= 60) return 'Wearables'
-  else if (rd <= 90) return 'Spoils'
-  else return 'Nothing'
-}
-
-export async function rewardD2() {
-  const baseRatio = 1
-  const rd = randomInt(1, 10000)
-  const weaponsRatio = Math.floor(((baseRatio * 25) / 100) * 10000)
-  const wearablesRatio = Math.floor(((baseRatio * 25) / 100) * 10000)
-  const spoilsRatio = Math.floor(((baseRatio * 40) / 100) * 10000)
-  //const nothingRatio = Math.floor(((baseRatio * 10) / 100) * 10000)
-
-  if (rd <= weaponsRatio) return 'Weapons'
-  else if (rd <= weaponsRatio + wearablesRatio) return 'Wearables'
-  else if (rd <= weaponsRatio + wearablesRatio + spoilsRatio) return 'Spoils'
-  else return 'Nothing'
-}
-
-export async function rewardD3(baseRatio: number = 1) {
-  //test
-  // if (reward == 2) return 'SacredCoin'
-  // else return 'Spoils'
-  //end test
-
-  //get atk,def
-  const maxNumber = 10000
-
-  const numberRatio = baseRatio * maxNumber
-
-  const rd = randomInt(1, maxNumber)
-  const weaponsRatio = Math.floor((numberRatio * 26) / 100)
-  const wearablesRatio = Math.floor((numberRatio * 28) / 100) + weaponsRatio
-  const spoilsRatio = Math.floor((numberRatio * 31) / 100) + wearablesRatio
-  const nothingRatio = Math.floor((numberRatio * 10.5) / 100) + spoilsRatio
-  const sacredCoinRatio = Math.floor((numberRatio * 1.5) / 100) + nothingRatio
-  const hiltCoreRatio = Math.floor((numberRatio * 1.5) / 100) + sacredCoinRatio
-  const ritualStoneRatio = Math.floor((numberRatio * 1) / 100) + hiltCoreRatio
-
-  console.log('random', rd)
-  if (rd <= weaponsRatio) return 'Weapons'
-  else if (rd <= wearablesRatio) return 'Wearables'
-  else if (rd <= spoilsRatio) return 'Spoils'
-  else if (rd <= nothingRatio) return 'Nothing'
-  else if (rd <= sacredCoinRatio) return 'SacredCoin'
-  else if (rd <= hiltCoreRatio) return 'HiltCore'
-  else if (rd <= ritualStoneRatio) return 'RitualStone'
-  else return 'Dead'
 }
 
 export async function rewardDungeon(

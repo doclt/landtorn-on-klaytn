@@ -153,6 +153,14 @@ contract LuckySpin is VRFConsumerBase, Ownable {
         if (amount <= 0 || SHARD.balanceOf(address(this)) < amount) revert InsufficientBalance();
         player.balance = 0;
         player.claimed += amount;
-        SHARD.transferFrom(address(this), msg.sender, amount);
+        SHARD.transfer(msg.sender, amount);
+    }
+
+    function withdraw() public onlyOwner {
+        payable(msg.sender).transfer(address(this).balance);
+    }
+
+    function withdrawShard() public onlyOwner {
+        SHARD.transfer(msg.sender, SHARD.balanceOf(address(this)));
     }
 }

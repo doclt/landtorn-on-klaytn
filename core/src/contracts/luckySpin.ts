@@ -491,6 +491,20 @@ export const luckySpinAbis = [
     type: 'function'
   },
   {
+    inputs: [],
+    name: 'withdraw',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
+  },
+  {
+    inputs: [],
+    name: 'withdrawShard',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function'
+  },
+  {
     inputs: [
       {
         internalType: 'uint64',
