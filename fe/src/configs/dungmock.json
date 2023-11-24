@@ -1,0 +1,66 @@
+[
+  {
+    "type": 1,
+    "spoil": {
+      "id": 18,
+      "name": "Bronze Belt",
+      "attack": 0,
+      "defense": 3,
+      "shard": 3,
+      "spoilTypeId": 6,
+      "imageUrl": "",
+      "dungeonTypeId": 1,
+      "tokenId": 16,
+      "category": {
+        "id": 2,
+        "name": "Wearables"
+      }
+    },
+    "amount": 2
+  },
+  {
+    "type": 1,
+    "spoil": {
+      "id": 33,
+      "name": "Iron Ore",
+      "attack": 0,
+      "defense": 0,
+      "shard": 1,
+      "spoilTypeId": 12,
+      "imageUrl": "",
+      "dungeonTypeId": 1,
+      "tokenId": 16,
+      "category": {
+        "id": 3,
+        "name": "Spoils"
+      }
+    },
+    "amount": 1
+  },
+  {
+    "type": 1,
+    "spoil": {
+      "id": 12,
+      "name": "Stolen Shoes",
+      "attack": 0,
+      "defense": 4,
+      "shard": 2,
+      "spoilTypeId": 4,
+      "imageUrl": "",
+      "dungeonTypeId": 1,
+      "tokenId": 16,
+      "category": {
+        "id": 2,
+        "name": "Wearables"
+      }
+    },
+    "amount": 1
+  },
+  {
+    "type": 0,
+    "spoil": {
+      "tokenId": 16
+    },
+    "amount": 1
+  }
+]

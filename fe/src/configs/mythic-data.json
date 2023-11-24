@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Sacred Coin",
+    "type": "Paladin",
+    "color": "#FF0000"
+  },
+  {
+    "id": 2,
+    "name": "Hilt Core",
+    "type": "IronFist",
+    "color": "#2176F6"
+  },
+  {
+    "id": 3,
+    "name": "Shard Vial",
+    "type": "Paladin",
+    "color": "#883CFF"
+  },
+  {
+    "id": 4,
+    "name": "Shard Essense",
+    "type": "IronFist",
+    "color": "#FB3CFF" 
+  },
+  {
+    "id": 5,
+    "name": "Cope Censer",
+    "type": "Paladin",
+    "color": "#9DB506"
+  },
+  {
+    "id": 6,
+    "name": "Cope Herbs",
+    "type": "IronFist",
+    "color": "#9DB506"
+  },
+  {
+    "id": 7,
+    "name": "Death Spell",
+    "type": "Paladin",
+    "color": "#FF0000"
+  },
+  {
+    "id": 8,
+    "name": "Shadow Compass",
+    "type": "IronFist",
+    "color": "#2AE9F5"
+  },
+  {
+    "id": 9,
+    "name": "Shard Amulet",
+    "type": "Paladin",
+    "color": "#FF9900"
+  },
+  {
+    "id": 10,
+    "name": "Shadow Fragment",
+    "type": "IronFist",
+    "color": "#FF0000"
+  },
+  {
+    "id": 11,
+    "name": "The Spell of Grim",
+    "type": "Paladin",
+    "color": "#C20CCD"
+  },
+  {
+    "id": 12,
+    "name": "Dragon Eye",
+    "type": "IronFist",
+    "color": "#FF9900"
+  }
+]

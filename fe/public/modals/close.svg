@@ -1,0 +1,28 @@
+<svg width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_397_4209)">
+<g clip-path="url(#clip0_397_4209)">
+<path d="M68 21.1603C68 18.3104 65.6896 16 62.8397 16H-286.84C-289.69 16 -292 18.3104 -292 21.1603V58.8397C-292 61.6896 -289.69 64 -286.84 64H62.8397C65.6896 64 68 61.6896 68 58.8397V21.1603Z" fill="#6A4A45"/>
+<path d="M34.1668 31.532C33.657 30.6464 34.6469 29.6565 35.5324 30.1664L43.1285 34.5397C43.4373 34.7175 43.8175 34.7175 44.1264 34.5397L51.7224 30.1664C52.608 29.6565 53.5978 30.6464 53.088 31.532L48.7147 39.128C48.5369 39.4369 48.5369 39.817 48.7147 40.1259L53.088 47.722C53.5978 48.6075 52.608 49.5974 51.7224 49.0875L44.1264 44.7142C43.8175 44.5364 43.4373 44.5364 43.1285 44.7142L35.5324 49.0875C34.6469 49.5974 33.657 48.6075 34.1668 47.722L38.5402 40.1259C38.718 39.817 38.718 39.4369 38.5402 39.128L34.1668 31.532Z" fill="#FFEFD7"/>
+</g>
+<path d="M67.5 28C67.5 21.6487 62.3513 16.5 56 16.5H32C25.6487 16.5 20.5 21.6487 20.5 28V52C20.5 58.3513 25.6487 63.5 32 63.5H56C62.3513 63.5 67.5 58.3513 67.5 52V28Z" stroke="url(#paint0_linear_397_4209)" shape-rendering="crispEdges"/>
+</g>
+<defs>
+<filter id="filter0_d_397_4209" x="0" y="0" width="88" height="88" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="10"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_397_4209"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_397_4209" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_397_4209" x1="44" y1="16" x2="44" y2="64" gradientUnits="userSpaceOnUse">
+<stop stop-color="#908694"/>
+<stop offset="1" stop-color="#1F1F1F"/>
+</linearGradient>
+<clipPath id="clip0_397_4209">
+<path d="M68 28C68 21.3726 62.6274 16 56 16H32C25.3726 16 20 21.3726 20 28V52C20 58.6274 25.3726 64 32 64H56C62.6274 64 68 58.6274 68 52V28Z" fill="white"/>
+</clipPath>
+</defs>
+</svg>
