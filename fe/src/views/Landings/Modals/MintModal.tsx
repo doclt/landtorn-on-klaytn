@@ -36,10 +36,10 @@ const MintModal = React.forwardRef(
     const { isKlayNetwork } = useGlobal();
     const dispatch = useAppDispatch();
     const { nft, isCreateNewNFT } = useAppSelector((p) => p.account);
+    
     const { address } = useAccount();
     const [tokenId, setTokenId] = useState<number>();
     const [isCreatedAccount, setIsCreatedAccount] = useState<boolean>();
-
     const { isOpen: isTornMinting, onClose, onOpen } = useDisclosure();
     const {
       isOpen: isAccountMinting,
@@ -85,6 +85,8 @@ const MintModal = React.forwardRef(
         if (signer && address && tokenId != undefined) {
           setHasActivity(true);
           onOpenMintAccount();
+          const registerContract = new RegisterContract(signer);
+          await registerContract.createAccount(tokenId);
           setIsCreatedAccount(true);
           dispatch(setSelectedNftAction({nft: !isCreateNewNFT  ? nft : undefined, isNew: true}));
         }
