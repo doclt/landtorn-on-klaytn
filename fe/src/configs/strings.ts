@@ -50,7 +50,7 @@ export const GamesData = {
     atk: 20,
     def: 20,
     energy: 1,
-    active: true,
+    active: false,
   },
   4: {
     title: "Dragon Den",
@@ -59,7 +59,7 @@ export const GamesData = {
     atk: 50,
     def: 50,
     energy: 1,
-    active: true,
+    active: false,
   },
   5: {
     title: "Isekar Temple",
@@ -68,7 +68,7 @@ export const GamesData = {
     atk: 100,
     def: 150,
     energy: 1,
-    active: true,
+    active: false,
   },
   6: {
     title: "Argun Town",
@@ -77,7 +77,7 @@ export const GamesData = {
     atk: 200,
     def: 250,
     energy: 1,
-    active: true,
+    active: false,
   },
   7: {
     title: "Grim Seminary",
@@ -86,7 +86,7 @@ export const GamesData = {
     atk: 300,
     def: 350,
     energy: 1,
-    active: true,
+    active: false,
   },
   8: {
     title: "Shadow Council Spiral",
@@ -95,7 +95,7 @@ export const GamesData = {
     atk: 400,
     def: 450,
     energy: 1,
-    active: true,
+    active: false,
   },
   9: {
     title: "Torned Lands",
@@ -104,23 +104,23 @@ export const GamesData = {
     atk: 500,
     def: 600,
     energy: 1,
-    active: true,
+    active: false,
   },
   10: {
     title: "Colossal Hunt",
     sub: "On the path of becoming an Iron Fist one must head into another realm and hunt for giant predators. A Mythic Dragon Eye is said to be found.",
     shard: 15000,
     atk: 700,
-    def: '1k',
+    def: "1k",
     energy: 1,
-    active: true,
+    active: false,
   },
   11: {
     title: "Demigod Tree",
     sub: "Lorak legends tell of a great tree where the smaller gods live, the toughest of Settlers come here to beg for Mythic Blessings.",
     shard: 20000,
-    atk: '1.2k',
-    def: '1.2k',
+    atk: "1.2k",
+    def: "1.2k",
     energy: 1,
     active: false,
   },
@@ -231,14 +231,14 @@ export const dungeon_raided_data = {
     isAttack: false,
     isShard: false,
     isDefence: false,
-    des: 'The Ritual Stone is a unique Item that allows you to perform a Sacrifice.',
+    des: "The Ritual Stone is a unique Item that allows you to perform a Sacrifice.",
   },
   5: {
     title: "You found a Mythic!",
     isAttack: false,
     isShard: true,
     isDefence: false,
-    des: 'You are now one step closer to a TornLord. Important: Mythics stay with you after Sacrifice.'
+    des: "You are now one step closer to a TornLord. Important: Mythics stay with you after Sacrifice.",
   },
 };
 
@@ -288,50 +288,49 @@ export const TornLorks = [
     id: 1,
     paladinId: undefined,
     ironFistId: undefined,
-    paladinColor: '#2AE9F5',
-    ironFistColor: '#2AE9F5',
+    paladinColor: "#2AE9F5",
+    ironFistColor: "#2AE9F5",
     desktop: {
       right: 0,
       left: 0,
       top: "-40px",
       bottom: undefined,
-      margin: "0px auto"
+      margin: "0px auto",
     },
     mobile: {
       right: undefined,
       left: undefined,
       top: "-30px",
       bottom: undefined,
-      margin: undefined
-    }
-    
+      margin: undefined,
+    },
   },
   {
     id: 2,
     paladinId: undefined,
     ironFistId: undefined,
-    paladinColor: '#FF0000',
-    ironFistColor: '#FF0000',
+    paladinColor: "#FF0000",
+    ironFistColor: "#FF0000",
     desktop: {
       left: undefined,
       right: "-25px",
       top: "-80px",
       bottom: 0,
-      margin: "auto auto"
+      margin: "auto auto",
     },
     mobile: {
       right: "15px",
       left: undefined,
-      top: '20px',
+      top: "20px",
       bottom: 0,
       margin: undefined,
       // margin: "auto 0px"
-    }    
+    },
   },
   {
     id: 5,
-    paladinColor: '#C20CCD',
-    ironFistColor: '#2176F6',
+    paladinColor: "#C20CCD",
+    ironFistColor: "#2176F6",
     paladinId: undefined,
     ironFistId: 2,
     desktop: {
@@ -339,126 +338,125 @@ export const TornLorks = [
       right: undefined,
       top: undefined,
       bottom: "-43px",
-      margin: undefined
-    },  
+      margin: undefined,
+    },
     mobile: {
       right: undefined,
       left: "36px",
       top: undefined,
       bottom: "10px",
-      margin: undefined
-    }    
+      margin: undefined,
+    },
   },
   {
     id: 3,
     paladinId: undefined,
     ironFistId: undefined,
-    color: '#9DB506',
-    paladinColor: '#9DB506',
-    ironFistColor: '#9DB506',
+    color: "#9DB506",
+    paladinColor: "#9DB506",
+    ironFistColor: "#9DB506",
     desktop: {
       left: undefined,
       right: "-6px",
       top: undefined,
       bottom: "70px",
-      margin: undefined
+      margin: undefined,
     },
     mobile: {
       right: "-16px",
       left: undefined,
       top: 0,
       bottom: "-35px",
-      margin: "auto 0px"
-    }    
+      margin: "auto 0px",
+    },
   },
   {
     id: 4,
     paladinId: undefined,
     ironFistId: undefined,
-    paladinColor: '#FF9900',
-    ironFistColor: '#FF9900',
+    paladinColor: "#FF9900",
+    ironFistColor: "#FF9900",
     desktop: {
       left: undefined,
       right: "95px",
       top: undefined,
       bottom: "-43px",
-      margin: undefined
+      margin: undefined,
     },
     mobile: {
       right: "36px",
       left: undefined,
       top: undefined,
       bottom: "10px",
-      margin: undefined
-    }    
+      margin: undefined,
+    },
   },
   {
     id: 6,
     paladinId: 3,
     ironFistId: 4,
-    paladinColor: '#883CFF',
-    ironFistColor: '#FB3CFF',
+    paladinColor: "#883CFF",
+    ironFistColor: "#FB3CFF",
     desktop: {
       left: "-6px",
       right: undefined,
       top: undefined,
       bottom: "70px",
-      margin: undefined
+      margin: undefined,
     },
     mobile: {
       right: undefined,
       left: "-16px",
       top: 0,
       bottom: "-35px",
-      margin: "auto 0px"
-    }     
+      margin: "auto 0px",
+    },
   },
   {
     id: 7,
     paladinId: 1,
     ironFistId: undefined,
-    paladinColor: '#FF0000',
-    ironFistColor: '#2AE9F5',
+    paladinColor: "#FF0000",
+    ironFistColor: "#2AE9F5",
     desktop: {
       left: "-25px",
       right: undefined,
       top: "-80px",
       bottom: 0,
-      margin: "auto auto"
+      margin: "auto auto",
     },
     mobile: {
       right: undefined,
       left: "15px",
-      top: '20px',
+      top: "20px",
       bottom: 0,
       margin: undefined,
-    }     
-  }
-]
+    },
+  },
+];
 
 export const RITUAL_STONE_ID = 13;
 
 export const TavernSource = {
   2: {
-    name: 'Energy Vial',
-    color: '#FF4B12',
+    name: "Energy Vial",
+    color: "#FF4B12",
     shard: 500,
     energy: 50,
     des: undefined,
-    tokenId: undefined
+    tokenId: undefined,
   },
   3: {
-    name: 'Life Vial',
-    color: '#FF4B12',   
+    name: "Life Vial",
+    color: "#FF4B12",
     energy: 150,
     shard: 1000,
     des: undefined,
-    tokenId: undefined
-
+    tokenId: undefined,
   },
   // 4: {
   //   name: 'Isekar Coin',
-  //   color: '#FFA012',   
+  //   color: '#FFA012',
   //   energy: undefined,
   //   shard: 2000,
   //   des: 'Gives you another life if you Die.',
@@ -466,10 +464,10 @@ export const TavernSource = {
   // },
   // 5: {
   //   name: 'Florki COIN',
-  //   color: '#FFA012',   
+  //   color: '#FFA012',
   //   energy: undefined,
   //   shard: 2000,
   //   des: 'If you Die you keep your Mythics.',
   //   tokenId: 276
   // },
-}
+};

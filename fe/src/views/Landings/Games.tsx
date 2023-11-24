@@ -69,7 +69,7 @@ export default function Games() {
   return (
     <LandingContainer>
       <SimpleGrid columns={1} w="full" rowGap="20px">
-        {new Array(10).fill(0).map((_, index) => (
+        {new Array(2).fill(0).map((_, index) => (
           <Flex
             key={index}
             className={`wow fadeInUp`}
