@@ -9,6 +9,7 @@ import { useAccount } from "wagmi";
 import { ISpinAccountDetail } from "@/types";
 import SpinResultModal from "./SpinResultModal";
 import Table from "./Table";
+import { numberFormat } from "@/utils";
 
 const Headers = [
   { name: "Rewards", w: 302.453 },
@@ -63,9 +64,9 @@ export default function SpinTheWheel() {
     return [
       [
         "Outcome",
-        (accountDetail?.claimed || 0) + (accountDetail?.balance || 0),
-        accountDetail?.claimed,
-        accountDetail?.balance,
+        numberFormat((accountDetail?.claimed || 0) + (accountDetail?.balance || 0)),
+        numberFormat(accountDetail?.claimed),
+        numberFormat(accountDetail?.balance),
         true,
       ],
     ];
