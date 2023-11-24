@@ -54,13 +54,12 @@ export class LuckySpinContract extends BaseInterface {
   getAccountDetails = async(walletAddress: string)=> {
     const rs = await this._contract.sAccountDetail(walletAddress);
     const item: ISpinAccountDetail = {
-      balance: this._toNumber(rs[3]),
+      balance: this._toNumberBalance(rs[3], 8),
       spinCount: this._toNumber(rs[0]),
       winCount: this._toNumber(rs[1]),
       spinAmount: this._toNumber(rs[2]),
-      claimed: this._toNumber(rs[4]),
+      claimed: this._toNumberBalance(rs[4], 8),
     }
-    console.log({rs, item})
     return item;
   }
 
