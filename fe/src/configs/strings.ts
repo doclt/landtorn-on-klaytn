@@ -8,7 +8,7 @@ export const opensea_item =
   "https://opensea.io/assets/base/0xb311ec23c4a7578a4c18f66774a5d7b51dd1dd07/";
 
 export const menus = [
-  { lable: "LandTorn", url: "/lorak" },
+  { lable: "LandTorn", url: "#" },
   { lable: "Lorak", url: "/lorak" },
   { lable: "About", url: "#" },
   {
