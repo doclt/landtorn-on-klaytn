@@ -122,13 +122,11 @@ const MintModal = React.forwardRef(
             fontSize={{ base: "16px", lg: "20px" }}
             // mb="-15px !important"
           >
-            Settlers are NFTs on the KLAYTN Blockchain
-            {/* , you will need to own ETH
-            on BASE to mint. */}
+           House of Klay Settlers are NFTs on the Klay Blockchain, you will need to own Klay to mint. 
           </Text>
-          {/* <Link href={gitbook_url} target="_blank">
-            <LandButton text="How to bridge ETH to BASE?" />
-          </Link> */}
+          <Link href={'https://www.securities.io/buy-klaytn/'} target="_blank">
+            <LandButton text="Where to get Klay?" />
+          </Link>
           <Text
             textAlign="center"
             variant={TextVariants.WITH_TEXT_400}

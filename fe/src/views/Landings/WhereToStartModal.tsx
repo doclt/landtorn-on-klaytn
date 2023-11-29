@@ -81,7 +81,7 @@ export default function WhereToStartModal({
             mint TORN NFTs, participate in the story, get $shards and much more.
           </Text>
 
-          <Link href={gitbook_url} target="_blank">
+          <Link href={'#'} >
             <Button
               bgColor="transparent"
               _hover={{ bgColor: "transparent" }}
@@ -104,7 +104,7 @@ export default function WhereToStartModal({
           >
             Learn about the story behind the Lorak world.
           </Text>
-          <Link href={gitbook_url} target="_blank">
+          <Link href={'#'} >
             <Button
               bgColor="transparent"
               _hover={{ bgColor: "transparent" }}

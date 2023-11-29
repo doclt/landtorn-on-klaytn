@@ -24,7 +24,7 @@ export default function LoreLorakExplainedTab() {
         <Link href='/torn-lorak'>
           <Tab label="TornLord" />
         </Link>
-        <Link target="_blank" href={gitbook_url}>
+        <Link  href={'#'}>
           <Tab label="LORAK EXPLAINED" />
         </Link>
         <Tab

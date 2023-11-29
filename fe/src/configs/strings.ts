@@ -8,12 +8,12 @@ export const opensea_item =
   "https://opensea.io/assets/base/0xb311ec23c4a7578a4c18f66774a5d7b51dd1dd07/";
 
 export const menus = [
-  { lable: "LandTorn", url: "/" },
+  { lable: "LandTorn", url: "/lorak" },
   { lable: "Lorak", url: "/lorak" },
-  { lable: "About", url: "https://landtorn.gitbook.io/landtorn" },
+  { lable: "About", url: "#" },
   {
     lable: "SHARD",
-    url: "https://www.dextools.io/app/en/base/pair-explorer/0x15f1fabeff0c33331004a4038992a07f870a9ae7",
+    url: "#",
   },
 ];
 
@@ -134,9 +134,9 @@ export const BadsData = {
 };
 
 export const socials = {
-  1: "https://twitter.com/Landtorn",
-  2: "https://opensea.io/collection/landtorn",
-  3: "https://discord.gg/landtorn",
+  1: "#",
+  2: "#",
+  3: "#",
 };
 
 export const flatforms = {

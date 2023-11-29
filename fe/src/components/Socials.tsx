@@ -8,7 +8,7 @@ export default function Socials({...props}: IProps) {
   return (
     <SimpleGrid columns={3} columnGap="20px" {...props}>
       {new Array(3).fill("/").map((_, index) => (
-        <Link href={socials[(index + 1) as keyof typeof socials]} target="_blank" key={index}>
+        <Link href={socials[(index + 1) as keyof typeof socials]}  key={index}>
           <Image src={`./socials/${index + 1}.svg`} />
         </Link>
       ))}
