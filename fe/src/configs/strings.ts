@@ -50,7 +50,7 @@ export const GamesData = {
     atk: 20,
     def: 20,
     energy: 1,
-    active: false,
+    active: true,
   },
   4: {
     title: "Dragon Den",
@@ -59,7 +59,7 @@ export const GamesData = {
     atk: 50,
     def: 50,
     energy: 1,
-    active: false,
+    active: true,
   },
   5: {
     title: "Isekar Temple",
@@ -68,7 +68,7 @@ export const GamesData = {
     atk: 100,
     def: 150,
     energy: 1,
-    active: false,
+    active: true,
   },
   6: {
     title: "Argun Town",
@@ -77,7 +77,7 @@ export const GamesData = {
     atk: 200,
     def: 250,
     energy: 1,
-    active: false,
+    active: true,
   },
   7: {
     title: "Grim Seminary",
@@ -86,7 +86,7 @@ export const GamesData = {
     atk: 300,
     def: 350,
     energy: 1,
-    active: false,
+    active: true,
   },
   8: {
     title: "Shadow Council Spiral",
@@ -95,7 +95,7 @@ export const GamesData = {
     atk: 400,
     def: 450,
     energy: 1,
-    active: false,
+    active: true,
   },
   9: {
     title: "Torned Lands",
@@ -104,7 +104,7 @@ export const GamesData = {
     atk: 500,
     def: 600,
     energy: 1,
-    active: false,
+    active: true,
   },
   10: {
     title: "Colossal Hunt",
@@ -113,7 +113,7 @@ export const GamesData = {
     atk: 700,
     def: "1k",
     energy: 1,
-    active: false,
+    active: true,
   },
   11: {
     title: "Demigod Tree",
